@@ -12,11 +12,11 @@ const config = require('config');
 router.get('/', auth, async (req, res) => {
   //res.send('Auth route');
   try {
-    const user = await User.findById(req.user.id).select('-password -email');
-    res.json(user);
+    const user = await User.findById(req.user.id).select('-password ');
+    return  res.json(user);
   } catch (error) {
-    console.log(error.message);
-    res.status(500).send('server error ');
+   // console.log(error.message);
+   return  res.status(500).send('server error ');
   }
 });
 
@@ -40,14 +40,15 @@ router.post(
     try {
       // See if user exists
       let user = await User.findOne({ email });
-      //  console.log(user);
+     // console.log(user)
       if (!user) {
-        return res.status(400).json({ error: 'Invalid Credentials' });
+        return res.status(400).json({ errors: ['Invalid Credentials'] });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
+     // console.log(isMatch)
       if (!isMatch) {
-        return res.status(400).json({ error: 'Invalid Credentials' });
+        return res.status(400).json({ errors: ['Invalid Credentials'] });
       }
       const payload = {
         user: {
