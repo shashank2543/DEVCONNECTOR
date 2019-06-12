@@ -115,7 +115,7 @@ router.put('/like/:id',auth,async (req,res)=>{
         if(error.kind === "ObjectId"){
             return res.status(404).json({msg:"Post not found"});
         }
-        console.error(error.message)
+       // console.error(error.message)
         return res.status(500).send('Server Error');
     }
 });
