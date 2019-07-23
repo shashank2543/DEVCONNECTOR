@@ -20,7 +20,6 @@ import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile'
 import Posts from './components/posts/Posts'
 import Post from './components/post/Post'
-import post from './reducer/post';
 if(localStorage.token){
     setAuthToken(localStorage.token);
 }
