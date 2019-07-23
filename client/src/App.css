@@ -309,7 +309,7 @@ button {
   width: 100%;
   top: 0;
   border-bottom: solid 1px var(--primary-color);
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .navbar ul {
