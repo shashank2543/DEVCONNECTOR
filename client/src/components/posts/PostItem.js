@@ -21,7 +21,7 @@ const PostItem = ({addLike,deletePost,removeLike,auth,post:{_id,text,name,avatar
             {text}
           </p>
            <p className="post-date">
-             <Moment format="YYYY/MM/DD">{date}</Moment>
+             <Moment format="YYYY/MM/DD HH:MM:SS">{date}</Moment>
           </p>
           {showActions && <Fragment>
             <button onClick = {e => addLike(_id)} type="button" className="btn btn-light">
