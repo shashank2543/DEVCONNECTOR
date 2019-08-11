@@ -21,7 +21,7 @@ router.get('/me', auth, async (req, res) => {
     }
     return res.json(profile);
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(500).send('server error');
   }
 });
@@ -103,8 +103,8 @@ router.post(
         res.json(profile);
       }
     } catch (error) {
-      console.error(error);
-      console.error(error.message);
+      console.log(error);
+      console.log(error.message);
       res.status(500).send('Server Error');
     }
     // res.send('Hello');
@@ -121,7 +121,7 @@ router.get('/', async (req, res) => {
    // console.log(profile)
     res.json(profile);
   } catch (error) {
-    console.error(error.message);
+    console.log(error.message);
     res.status(500).send('Server Error');
   }
 });
@@ -146,7 +146,7 @@ router.get('/user/:user_id', async (req, res) => {
         msg: 'No profile Exits'
       });
     }
-    console.error(error.message);
+    console.log(error.message);
     res.status(500).send('Server Error');
   }
 });
@@ -221,6 +221,7 @@ router.delete('/experience/:exp_id',auth, async(req,res) =>{
     //console.log(profile.experience)
     if(profile){
       const removeIndex = profile.experience.map(item => item.id).indexOf(req.params.exp_id);
+      console.log(removeIndex)
       if(removeIndex != -1){
         profile.experience.splice(removeIndex,1);
         await profile.save();
@@ -339,7 +340,7 @@ router.get('/github/:username',(req,res) => {
       res.json(JSON.parse(body))
     });
   } catch (error) {
-    console.error(error.message)
+    console.log(error.message)
     res.status(500).send('Server Error')
   }
 });

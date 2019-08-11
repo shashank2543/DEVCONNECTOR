@@ -9,7 +9,7 @@ module.exports = function(req, res, next) {
     res.status(401).json({
       msg: 'No Token'
     });
-    return;
+    next();
   }
 
   // Verify token
