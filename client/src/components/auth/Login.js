@@ -22,7 +22,7 @@ const Login = ({login,isAuthenticated}) => {
 
     // Redirect if login
     if(isAuthenticated){
-      return <Redirect to="/dashboard"></Redirect>
+      return <Redirect to="/posts"></Redirect>
     }
     return (
         <Fragment> <h1 className="large text-primary">Sign In</h1>

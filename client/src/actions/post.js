@@ -24,7 +24,6 @@ export const getPosts = () => async dispatch => {
 
 export const addLike = (postId) => async dispatch => {
     try {
-        //  console.log(postId);
         const res = await axios.put(`/api/posts/like/${postId}`);
        
         dispatch({
@@ -32,7 +31,6 @@ export const addLike = (postId) => async dispatch => {
             payload:{postId,likes:res.data}
         });
     } catch (error) {
-        //console.log(error.response);
         dispatch({
             type:POST_ERROR,
             payload:{msg:error.response.statusText,status:error.response.status}
@@ -101,7 +99,7 @@ export const addPost = (formData) => async dispatch => {
     }
 };
  // Get Post
-export const getPost = id => async dispatch => {
+export const getPost = (id,history) => async dispatch => {
     try {
         const res = await axios.get(`/api/posts/${id}`);
 
@@ -110,6 +108,7 @@ export const getPost = id => async dispatch => {
             payload:res.data
         })
     } catch (error) {
+        history.push('/posts')
         dispatch({
             type:POST_ERROR,
             payload:{msg:error.response.statusText,status:error.response.status}

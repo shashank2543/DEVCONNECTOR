@@ -8,9 +8,9 @@ import {Link} from 'react-router-dom'
 import CommentForm from './CommentForm';
 import CommentItem from './CommentItem'; 
 
-const Post = ({getPost,post:{post,loading},match}) => {
+const Post = ({getPost,post:{post,loading},match,history}) => {
     useEffect(() => {
-        getPost(match.params.id)
+        getPost(match.params.id,history)
     },[getPost])
     return (
        loading || post == null ? <Spinner/> :<Fragment>
