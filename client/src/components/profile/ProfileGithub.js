@@ -7,13 +7,12 @@ const ProfileGithub = ({username,getGithubRepos,repos}) => {
     useEffect(()=>{
         getGithubRepos(username)
     },[getGithubRepos,username]);
-    console.log(repos);
     
     return (
         <div className="profile-github">
-            {repos !== null || repos.length !== 0 && <h2 className="text-primary my-1">Github Repos</h2>} 
+            <h2 className="text-primary my-1">Github Repos</h2> 
             {repos === null || repos.length === 0 ? (
-                 <Fragment></Fragment>
+                 <Spinner></Spinner>
             ) :(
                 repos.map(repo=>(
                     <div key={repo._id} className="repo bg-white p-1 my-1">
