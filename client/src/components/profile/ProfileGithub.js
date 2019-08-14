@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getGithubRepos} from '../../actions/profile';
@@ -7,11 +7,13 @@ const ProfileGithub = ({username,getGithubRepos,repos}) => {
     useEffect(()=>{
         getGithubRepos(username)
     },[getGithubRepos,username]);
+    console.log(repos.length);
+    
     return (
         <div className="profile-github">
-            <h2 className="text-primary my-1">Github Repos</h2> 
-            {repos === null || repos.length == 0 ? (
-                <Spinner/>
+            {repos !== null || repos.length !== 0 && <h2 className="text-primary my-1">Github Repos</h2>} 
+            {repos === null || repos.length === 0 ? (
+                 <Fragment></Fragment>
             ) :(
                 repos.map(repo=>(
                     <div key={repo._id} className="repo bg-white p-1 my-1">
