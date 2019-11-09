@@ -1,10 +1,17 @@
-import React,{Fragment,useState} from 'react'
+import React,{Fragment,useState,useEffect} from 'react'
 import {Link,Redirect} from 'react-router-dom'
 import {connect} from 'react-redux';
 import {setAlert} from '../../actions/alert';
 import {register} from '../../actions/auth';
 import PropTypes from 'prop-types';
 const Register = ({setAlert,register,isAuthenticated} ) => { 
+    let textInput = null;
+    const setTextInputRef = (element) => {
+      textInput = element;
+    }
+    useEffect(()=>{
+      textInput.focus();
+    },[])
     const [formData,setFormData] = useState({
         name:"",
         email:"",
@@ -34,7 +41,7 @@ const Register = ({setAlert,register,isAuthenticated} ) => {
         <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
         <form className="form" onSubmit={e => onSubmit(e)}>
           <div className="form-group">
-            <input type="text" placeholder="Name" name="name" value={name} onChange = {e => onChange(e)} required />
+            <input ref = {setTextInputRef} type="text" placeholder="Name" name="name" value={name} onChange = {e => onChange(e)} required />
           </div>
           <div className="form-group">
             <input type="email" placeholder="Email Address" name="email"   value={email} onChange = {e => onChange(e)} required/>

@@ -1,9 +1,15 @@
-import React,{Fragment,useState} from 'react';
+import React,{Fragment,useState,useEffect} from 'react';
 import {Link,Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {login} from '../../actions/auth'
-const Login = ({login,isAuthenticated}) => {
+const Login = React.forwardRef(({login,isAuthenticated},refs) => {
+
+
+    let textInput = React.createRef();
+    useEffect(()=>{
+      textInput.current.focus();
+    },[])
     const [formData,setFormData] = useState({
         email:"",
         password:"",
@@ -29,7 +35,7 @@ const Login = ({login,isAuthenticated}) => {
         <p className="lead"><i className="fas fa-user"></i> Sign In Your Account</p>
         <form className="form" onSubmit={e => onSubmit(e)}>
           <div className="form-group">
-            <input type="email" placeholder="Email Address" name="email"   value={email} onChange = {e => onChange(e)} required/>
+            <input ref ={textInput}type="email" placeholder="Email Address" name="email"   value={email} onChange = {e => onChange(e)} required/>
           </div>
           <div className="form-group">
             <input
@@ -46,7 +52,7 @@ const Login = ({login,isAuthenticated}) => {
           Don't have an account? <Link to="/register">Sign Up</Link>
         </p></Fragment>
     )
-}
+});
 
 login.propTypes = {
   login:PropTypes.func.isRequired,
